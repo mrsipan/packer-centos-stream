@@ -1,4 +1,4 @@
-# Build qemu Centos-stream images
+# Build qemu CentOS-Stream qcow2 images
 
 Build minimal CentOS-Stream `qcow2` images that can be used in _kvm_ or _xen_.
 
