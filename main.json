@@ -1,4 +1,7 @@
 {
+    "variables": {
+        "format": "qcow2"
+    },
     "builders": [
         {
             "accelerator": "kvm",
@@ -7,8 +10,8 @@
             ],
             "boot_wait": "10s",
             "disk_interface": "virtio",
-            "disk_size": 4096,
-            "format": "qcow2",
+            "disk_size": 3072,
+            "format": "{{ user `format` }}",
             "http_directory": "http",
             "iso_checksum": "e38192400212796085b7996f21828aa8f8a72d44b64059572eb8c725e13be4cc",
             "iso_checksum_type": "sha256",
@@ -20,14 +23,22 @@
             "ssh_timeout": "10m",
             "ssh_username": "root",
             "type": "qemu",
-            "vm_name": "centos-8-stream-amd64-{{ timestamp }}.qcow2",
+            "vm_name": "centos-8-stream-amd64-{{ timestamp }}.{{ user `format` }}",
             "headless": true,
             "qemuargs": [
-                ["-monitor", "unix:qemu-monitor.sock,server,nowait"],
-                ["-serial", "pipe:/tmp/qemu-serial"],
-                ["-m", "896M"]
+                [
+                    "-monitor",
+                    "unix:qemu-monitor.sock,server,nowait"
+                ],
+                [
+                    "-serial",
+                    "pipe:/tmp/qemu-serial"
+                ],
+                [
+                    "-m",
+                    "896M"
+                ]
             ]
         }
     ]
 }
-
